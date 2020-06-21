@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  
+    
+    <div class="jumbotron" style="background: #8e9eab;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    ">
+      <div class="container">
+        <div class="center">
+          <form action="/customerPage" method='POST'>
+            <input type="text" name="location" placeholder="location"> 
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+        <a href="/customerPage"><button type="submit" class="btn btn-dark" style="margin-left: 30%;">Refresh</button> </a>
+        </div>
+      </div>
+    <br>
+    <br>
+    
+      <div class="boxes">
+          {% for key,values in t.items() %}
+            
+          <div class="flip-card" style="height: 300px; width: 300px;">
+            <div class="flip-card-inner"> 
+              <div class="flip-card-front">
+                <img src={{values["image"]}} alt="Card image cap" style="width: 11rem;">
+                <div class="card-body">
+                  
+                  <h5 class="card-title"><b>{{values["name"]}}</b></h5>
+                  <p><i class="fas fa-map-marker-alt"></i> {{values["location"]}}</p>
+                  <pre><i class="fas fa-male"> {{values["people"]}}</i></pre> 
+                  <p>Timings : 9AM - 6PM</p>
+                </div>
+              </div>
+
+              <div class="flip-card-back">
+                <h1>Items Available</h1>
+                <p>Veggies</p>
+                <p>Fruits</p>
+                <p>Diary</p>
+                <p>Bread</p>
+                <a href="/customerBookingShop/{{ key }}"><button class="btn btn-primary">Book Slots</button></a>
+              </div>
+
+            </div>
+          </div>
+            
+          {% endfor %}
+      </div>
+    </div>
+
+
+{% endblock %}
